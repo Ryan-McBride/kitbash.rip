@@ -16,8 +16,11 @@ app.get('/', function(req, res) {
 
 app.get('/shuffle', function(req, res) {
   connection.query('SELECT * FROM gunpla ORDER BY rand() LIMIT 2', function (error, results, fields) {
-    if (error) throw error;
-    res.send(JSON.stringify(results));
+    if (error) {
+      res.sendStatus(500);
+    } else {
+      res.send(JSON.stringify(results));
+    }
   });
 });
 
