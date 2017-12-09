@@ -22,9 +22,14 @@ app.get('/shuffle', function(req, res) {
   });
 });
 
-app.get('*', function(req, res){
+app.get('/page-not-found', function(req, res){
   res.sendFile('404.html', {root: __dirname+'/public', status:404});
-})
+});
+
+app.get('*', function(req, res){
+  res.redirect('/page-not-found');
+  //res.sendFile('404.html', {root: __dirname+'/public', status:404});
+});
 
 var httpServer = http.createServer(app);
 
