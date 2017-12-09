@@ -1,6 +1,7 @@
 var mysql       = require('mysql');
 var db          = require('./db.js');
 var connection  = mysql.createConnection(db);
+var port        = process.env.port || 8080;
 
 var http = require('http');
 var fs = require('fs');
@@ -23,5 +24,5 @@ app.get('/shuffle', function(req, res) {
 
 var httpServer = http.createServer(app);
 
-httpServer.listen(8080);
-console.log('http server listening on port 8080');
+httpServer.listen(port);
+console.log('http server listening on port '+port);
