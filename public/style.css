@@ -1,9 +1,9 @@
-body{
+body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#banner {
-
+header {
+  padding: 15px;
 }
 
 #kitContainer {
