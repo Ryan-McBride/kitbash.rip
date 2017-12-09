@@ -22,6 +22,10 @@ app.get('/shuffle', function(req, res) {
   });
 });
 
+app.get('*', function(req, res){
+  res.sendFile('404.html', {root: __dirname+'/public', status:404});
+})
+
 var httpServer = http.createServer(app);
 
 httpServer.listen(port);
