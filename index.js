@@ -17,7 +17,9 @@ app.get('/', function(req, res) {
 
 app.get('/shuffle', function(req, res) {
   connection.query('SELECT * FROM gunpla ORDER BY rand() LIMIT 2', function (error, results, fields) {
-    if (error) throw error;
+    if(error){
+      fs.appendFileSync('kitbash.log', error+'\n');
+    }
     res.send(JSON.stringify(results));
   });
 });
@@ -28,7 +30,6 @@ app.get('/page-not-found', function(req, res){
 
 app.get('*', function(req, res){
   res.redirect('/page-not-found');
-  //res.sendFile('404.html', {root: __dirname+'/public', status:404});
 });
 
 var httpServer = http.createServer(app);
