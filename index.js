@@ -1,7 +1,8 @@
 var mysql       = require('mysql');
 var db          = require('./db.js');
-var connection  = mysql.createConnection(db);
 var port        = process.env.port || 8080;
+var connection;
+handleDisconnect();
 
 var http = require('http');
 var fs = require('fs');
@@ -36,3 +37,23 @@ var httpServer = http.createServer(app);
 
 httpServer.listen(port);
 console.log('http server listening on port '+port);
+
+function handleDisconnect(){
+  connection = mysql.createConnection(db);
+
+  connection.connect(function(err){
+    if(err) {
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000);
+    }
+  });
+
+  connection.on('error', function(err){
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
