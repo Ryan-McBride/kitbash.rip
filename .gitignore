@@ -3,3 +3,4 @@ db.js
 node_modules
 package-lock.json
 *.log
+gunpla.json
