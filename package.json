@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "prod": "port=\"80\" node index.js"
+    "prod": "restart --watch gunpla.json --exec port=\"80\" node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
     "http": "0.0.0",
-    "mysql": "^2.15.0"
+    "restart": "0.0.4"
   }
 }
