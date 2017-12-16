@@ -48,6 +48,7 @@ button {
 }
 
 .checkbox {
+  margin-top:10px;
   height:30px;
   width:30px;
   background: transparent url(lock.png) no-repeat 0 50%;
