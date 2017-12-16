@@ -10,12 +10,12 @@ function getKits(){
   $.get("/shuffle", function(data, status){
     data = JSON.parse(data);
     if(!$('#leftLock').hasClass('checked')){
-      $('#leftKit').css('background-image', 'url('+ data[0].image+')');
+      $('#leftKit').css('background-image', 'url('+ s3Encode(data[0].image)+')');
       $('#leftName').text(decodeURIComponent(data[0].name));
       $('.leftLink').attr('href', data[0].wiki);
     }
     if(!$('#rightLock').hasClass('checked')){
-      $('#rightKit').css('background-image', 'url('+ data[1].image+')');
+      $('#rightKit').css('background-image', 'url('+ s3Encode(data[1].image)+')');
       $('#rightName').text(decodeURIComponent(data[1].name));
       $('.rightLink').attr('href', data[1].wiki);
     }
@@ -27,4 +27,8 @@ function getKits(){
   });
 }
 
-
+function s3Encode(str){
+  str = str.split('/');
+  str[str.length-1] = encodeURIComponent(str[str.length-1]);
+  return str.join('/');
+}
