@@ -33,6 +33,5 @@ httpServer.listen(port);
 console.log('http server listening on port '+port);
 
 function rand(max){
-  return (Math.floor(Math.random() * max) + 1) - 1 
-  //need to subtract 1 because otherwise this would sometimes return -1
+  return (Math.ceil(Math.random() * max) - 1) 
 }
